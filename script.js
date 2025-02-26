@@ -1,50 +1,95 @@
-document.getElementById('calculate-btn').addEventListener('click', function () {
-  // Get input values
-  const principal = parseFloat(document.getElementById('principal').value);
-  const interest = parseFloat(document.getElementById('interest').value);
-  const tenure = parseFloat(document.getElementById('tenure').value);
+/* General Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
 
-  // Validate inputs
-  if (isNaN(principal) || isNaN(interest) || isNaN(tenure)) {
-    alert('Please enter valid numbers for all fields.');
-    return;
-  }
+.calculator-container {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 1000px;
+  text-align: center;
+}
 
-  // Calculate monthly interest rate
-  const monthlyInterest = interest / 12 / 100;
+h1 {
+  color: #333;
+  margin-bottom: 1.5rem;
+}
 
-  // Calculate EMI using reducible interest formula
-  const emi =
-    (principal * monthlyInterest * Math.pow(1 + monthlyInterest, tenure)) /
-    (Math.pow(1 + monthlyInterest, tenure) - 1);
+.input-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
 
-  // Display EMI
-  document.getElementById('emi-result').textContent = `₹${emi.toFixed(2)}`;
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #555;
+  font-weight: bold;
+}
 
-  // Generate amortization schedule
-  generateAmortizationSchedule(principal, monthlyInterest, tenure, emi);
-});
+input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
 
-function generateAmortizationSchedule(principal, monthlyInterest, tenure, emi) {
-  const scheduleBody = document.querySelector('#schedule tbody');
-  scheduleBody.innerHTML = ''; // Clear previous schedule
+button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
 
-  let balance = principal;
+button:hover {
+  background-color: #0056b3;
+}
 
-  for (let month = 1; month <= tenure; month++) {
-    const interestComponent = balance * monthlyInterest;
-    const principalComponent = emi - interestComponent;
-    balance -= principalComponent;
+.result {
+  margin-top: 2rem;
+}
 
-    // Create a new row for the schedule
-    const row = document.createElement('tr');
-    row.innerHTML = `
-      <td>${month}</td>
-      <td>₹${principalComponent.toFixed(2)}</td>
-      <td>₹${interestComponent.toFixed(2)}</td>
-      <td>₹${emi.toFixed(2)}</td>
-      <td>₹${balance.toFixed(2)}</td>
-    `;
-    scheduleBody.appendChild(row);
-  }
+#emi-result {
+  color: #007bff;
+  font-weight: bold;
+}
+
+.amortization-table {
+  margin-top: 2rem;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+th, td {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+th {
+  background-color: #f4f4f9;
+  font-weight: bold;
 }

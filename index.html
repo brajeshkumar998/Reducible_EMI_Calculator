@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reducing Balance EMI Calculator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="calculator-container">
+    <h1>Reducing Balance EMI Calculator</h1>
+    <div class="input-group">
+      <label for="principal">Loan Amount (₹)</label>
+      <input type="number" id="principal" placeholder="Enter loan amount">
+    </div>
+    <div class="input-group">
+      <label for="interest">Interest Rate (% per annum)</label>
+      <input type="number" id="interest" placeholder="Enter interest rate">
+    </div>
+    <div class="input-group">
+      <label for="tenure">Loan Tenure (in months)</label>
+      <input type="number" id="tenure" placeholder="Enter loan tenure">
+    </div>
+    <button id="calculate-btn">Calculate EMI</button>
+    <div class="result">
+      <h2>Your EMI: <span id="emi-result">₹0.00</span></h2>
+    </div>
+    <div class="amortization-table">
+      <h3>Amortization Schedule</h3>
+      <table id="schedule">
+        <thead>
+          <tr>
+            <th>Month</th>
+            <th>Principal (₹)</th>
+            <th>Interest (₹)</th>
+            <th>Total Payment (₹)</th>
+            <th>Remaining Balance (₹)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Rows will be dynamically added here -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
